@@ -12,4 +12,6 @@ public interface EcommerceService {
 	public Product findById(Integer id);
 	
 	public void deleteById(Integer id);
+	
+	public Product findByName(String name);
 }

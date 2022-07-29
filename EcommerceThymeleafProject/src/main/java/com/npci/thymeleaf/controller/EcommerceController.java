@@ -29,8 +29,6 @@ public class EcommerceController {
 		return "ecommerceUI/ecomProductList.html";
 
 	}
-	
-	
 
 	@GetMapping("/addProduct")
 	public String addProduct(Model model) {
@@ -57,6 +55,14 @@ public class EcommerceController {
 	@GetMapping("/deleteProduct")
 	public String deleteById(@RequestParam("productid") Integer id) {
 		ecommService.deleteById(id);
+		return "redirect:/ecommerce/productList";
+	}
+	
+	@GetMapping("/findByProductName")
+	public String findByName(@RequestParam("name") String name) {
+		
+		ecommService.findByName(name);
+		
 		return "redirect:/ecommerce/productList";
 	}
 

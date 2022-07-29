@@ -15,7 +15,7 @@
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
 
-	
+
 
 
 </head>
@@ -27,41 +27,62 @@
 			<a th:href="@{/ecommerce/addProduct}" class="btn btn-dark"> Add Product</a>
 		</div>
 		&nbsp;
-		<table class="table table-bordered" style= "background-color: gainsboro;">
+		
+		<form th:action="@{/ecommerce/findByProductName}" style =" margin-left:850px">
+		<div class = "row" ><h4>Search By name</h4>
+			<div class = "col">
+		<input type="text" class= "form-control mb-2 col-r" th:name="name">
+		</div>
+		<div class="col">
+		<button type = "submit" class = "btn btn-dark">Search</button>
+		</div>
+		</div>
+		
+		</form>
+			&nbsp;
+			<table class="table table-bordered" style="background-color: gainsboro;">
 
-			<tr class="table-dark">
-				<th>ProductId</th>
-				<th>Product Name</th>
-				<th>Unit Price</th>
-				<th>Units in Stock</th>
-				<th>Image Url</th>
-				<th>Date created</th>
-				<th>Category Id</th>
-				<th> Update or Delete</th>
+				<tr class="table-dark">
+					<th>ProductId</th>
+					<th>Product Name</th>
+					<th>Unit Price</th>
+					<th>Units in Stock</th>
+					<th>Image Url</th>
+					<th>Date created</th>
+					<th>Category Id</th>
+					<th> Update or Delete</th>
 
-			</tr>
+				</tr>
 
-			<tr th:each="product : ${PRODUCT}">
-				<td th:text=${product.productid}>
-				<td th:text=${product.name}>
-				<td th:text=${product.unitprice}>
-				<td th:text=${product.unitsinstock}>
-				<td th:text=${product.imageurl}>
-				<td th:text=${product.datecreated}>
-				<td th:text=${product.categoryid}>
-				<td>
-					<a class="btn btn-dark" th:href="@{/ecommerce/updateProduct(productid = ${product.productid} )}">update</a>
-					&nbsp;
-					<a class="btn btn-dark" th:href="@{/ecommerce/deleteProduct(productid = ${product.productid} )}"
-					onclick="if(!(confirm('Are you sure to delete this employee details?'))) ">delete</a>
+				<tr th:each="product : ${PRODUCT}">
+					<td th:text=${product.productid}>
+					<td th:text=${product.name}>
+					<td th:text=${product.unitprice}>
+					<td th:text=${product.unitsinstock}>
+					<td th:text=${product.imageurl}>
+					<td th:text=${product.datecreated}>
+					<td th:text=${product.categoryid}>
+					<td>
+						<a class="btn btn-dark"
+							th:href="@{/ecommerce/updateProduct(productid = ${product.productid} )}">update</a>
+						&nbsp;
+						<a class="btn btn-dark" th:href="@{/ecommerce/deleteProduct(productid = ${product.productid} )}"
+							onclick="if(!(confirm('Are you sure to delete this employee details?'))) ">delete</a>
 
-				</td>
+					</td>
 
 
-			</tr>
+				</tr>
 
-		</table>
+			</table>
+		</div>
+
+
+
+
+
 	</div>
+
 </body>
 
 </html>

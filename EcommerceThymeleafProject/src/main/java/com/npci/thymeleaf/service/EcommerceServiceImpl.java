@@ -10,41 +10,48 @@ import com.npci.thymeleaf.entity.Product;
 import com.npci.thymeleaf.repository.EcommerceRepository;
 
 @Service
-public class EcommerceServiceImpl implements EcommerceService  {
-	
+public class EcommerceServiceImpl implements EcommerceService {
+
 	@Autowired
 	EcommerceRepository ecommRepo;
-	
+
 	@Override
 	public List<Product> findAll() {
-		
+
 		return ecommRepo.findAll();
 	}
 
 	@Override
 	public void save(Product product) {
 		ecommRepo.save(product);
-		
+
 	}
 
 	@Override
 	public Product findById(Integer id) {
-		
-		Optional<Product> prod =ecommRepo.findById(id);
-		
+
+		Optional<Product> prod = ecommRepo.findById(id);
+
 		Product product = null;
-		if(prod.isPresent())
-			product =prod.get();
+		if (prod.isPresent())
+			product = prod.get();
 		return product;
 	}
 
-
 	public void deleteById(Integer id) {
 		ecommRepo.deleteById(id);
-		
-		
+
 	}
-	
-	
+
+	@Override
+	public Product findByName(String name) {
+
+		Optional<Product> prod = ecommRepo.findByNameContainsAllIgnoreCase(name);
+
+		Product product = null;
+		if (prod.isPresent())
+			product = prod.get();
+		return product;
+	}
 
 }
